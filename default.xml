@@ -6,10 +6,10 @@
   <remote name="friendlyarm" fetch="https://github.com/friendlyarm/" />
 
   <!-- Core Yocto layers -->
-  <project path="poky" name="poky" remote="yocto" revision="kirkstone" />
+  <project path="poky" name="poky" remote="yocto" revision="whinlatter" />
   
   <!-- OpenEmbedded layers -->
-  <project path="meta-openembedded" name="meta-openembedded" remote="openembedded" revision="kirkstone" />
+  <project path="meta-openembedded" name="meta-openembedded" remote="openembedded" revision="whinlatter" />
   
   <!-- Rockchip specific layers -->
   <project path="meta-rockchip" name="meta-rockchip" remote="yocto" revision="master" />
@@ -21,6 +21,6 @@
   <project path="meta-web-kiosk" name="meta-web-kiosk" remote="yocto" revision="master" />
   
   <!-- Security layer (optional) -->
-  <project path="meta-security" name="meta-security" remote="yocto" revision="kirkstone" />
+  <project path="meta-security" name="meta-security" remote="yocto" revision="whinlatter" />
 
 </manifest>

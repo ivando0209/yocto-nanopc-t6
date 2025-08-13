@@ -9,18 +9,18 @@
   <project path="poky" name="poky" remote="yocto" revision="whinlatter" />
   
   <!-- OpenEmbedded layers -->
-  <project path="meta-openembedded" name="meta-openembedded" remote="openembedded" revision="whinlatter" />
+  <project path="meta-openembedded" name="meta-openembedded" remote="openembedded" revision="master" />
   
   <!-- Rockchip specific layers -->
   <project path="meta-rockchip" name="meta-rockchip" remote="yocto" revision="master" />
   
   <!-- Additional useful layers -->
-  <project path="meta-qt5" name="meta-qt5" remote="qt" revision="master" />
+  <!-- <project path="meta-qt5" name="meta-qt5" remote="qt" revision="master" /> -->
   
   <!-- Browser layer (optional) -->
   <project path="meta-web-kiosk" name="meta-web-kiosk" remote="yocto" revision="master" />
   
   <!-- Security layer (optional) -->
-  <project path="meta-security" name="meta-security" remote="yocto" revision="whinlatter" />
+  <!-- <project path="meta-security" name="meta-security" remote="yocto" revision="whinlatter" /> -->
 
 </manifest>

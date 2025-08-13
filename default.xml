@@ -3,7 +3,7 @@
   <remote name="yocto" fetch="https://git.yoctoproject.org/git/" />
   <remote name="openembedded" fetch="https://github.com/openembedded/" />
   <remote name="rockchip" fetch="https://github.com/JeffyCN/" />
-  <remote name="meta-rockchip" fetch="https://git.yoctoproject.org/meta-rockchip" />
+  <remote name="meta-rockchip" fetch="git://git.yoctoproject.org/meta-rockchip" />
   <remote name="friendlyarm" fetch="https://github.com/friendlyarm/" />
 
   <default revision="refs/heads/kirkstone" remote="yocto" />

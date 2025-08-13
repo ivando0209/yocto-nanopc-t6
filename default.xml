@@ -13,7 +13,8 @@
   
   <!-- Rockchip specific layers -->
   <project path="meta-rockchip" name="meta-rockchip" remote="yocto" revision="master" />
-  
+  <project path="meta-arm" name="meta-arm" remote="yocto" revision="master" />
+
   <!-- Additional useful layers -->
   <!-- <project path="meta-qt5" name="meta-qt5" remote="qt" revision="master" /> -->
   

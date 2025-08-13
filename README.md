@@ -110,6 +110,10 @@ The container will automatically mount your host directories:
 # Navigate to the project directory (inside container)
 cd /home/user/Documents/nanopc-t6
 
+# Set Python 2.7 is default for compilation
+sudo update-alternatives --config python
+# Choose python 2.7
+
 # Initialize repo with the manifest
 repo init --depth=1 -u git@github.com:ivando0209/yocto-nanopc-t6.git \
     -m default.xml \
@@ -125,6 +129,10 @@ repo sync -j16
 ```bash
 # Export Locale
 export LANG=en_US.UTF-8 && export LC_ALL=en_US.UTF-8 && export LC_CTYPE=en_US.UTF-8
+
+# Set Python 3.8 is default for compilation
+sudo update-alternatives --config python
+# Choose python 3.8
 
 # Set up Poky buildtools environment
 . poky/buildtools/environment-setup-x86_64-pokysdk-linux

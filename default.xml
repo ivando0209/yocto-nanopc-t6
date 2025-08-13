@@ -6,7 +6,7 @@
   <remote name="friendlyarm" fetch="https://github.com/friendlyarm/" />
 
   <!-- Core Yocto layers -->
-  <project path="poky" name="poky" remote="yocto" revision="whinlatter" />
+  <project path="poky" name="poky" remote="yocto" revision="master" />
   
   <!-- OpenEmbedded layers -->
   <project path="meta-openembedded" name="meta-openembedded" remote="openembedded" revision="master" />

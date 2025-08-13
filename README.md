@@ -1,8 +1,8 @@
-# Yocto Build for NanoPC-T6
+# 🚀 Yocto Build for NanoPC-T6
 
 This repository contains the build configuration and scripts for creating a Yocto Linux distribution for the FriendlyElec NanoPC-T6 single board computer based on the Rockchip RK3588 SoC.
 
-## Overview
+## 📋 Overview
 
 The NanoPC-T6 is a powerful ARM64 single board computer featuring:
 - Rockchip RK3588 8-core processor (4x Cortex-A76 + 4x Cortex-A55)
@@ -12,20 +12,20 @@ The NanoPC-T6 is a powerful ARM64 single board computer featuring:
 
 This project uses the Yocto Project to build a custom Linux distribution optimized for the NanoPC-T6.
 
-## Prerequisites
+## ⚙️ Prerequisites
 
 This project uses Docker to provide a consistent compilation environment, eliminating the need for manual package installation and configuration.
 
-### System Requirements
+### 💻 System Requirements
 - **OS**: Any Linux distribution with Docker support, Windows with WSL2, or macOS
 - **RAM**: Minimum 8GB (16GB+ recommended for faster builds)
 - **Storage**: At least 100GB free disk space
 - **CPU**: Multi-core processor (more cores = faster builds)
 
-### Required Software
+### 📦 Required Software
 Install Docker and Docker Compose on your system:
 
-#### Ubuntu/Debian:
+#### 🐧 Ubuntu/Debian:
 ```bash
 # Install Docker
 sudo apt update
@@ -38,7 +38,7 @@ sudo usermod -aG docker $USER
 # Log out and back in for group changes to take effect
 ```
 
-#### Arch Linux:
+#### 🏔️ Arch Linux:
 ```bash
 # Install Docker
 sudo pacman -S docker docker-compose
@@ -50,10 +50,10 @@ sudo usermod -aG docker $USER
 # Log out and back in for group changes to take effect
 ```
 
-#### Other Distributions:
+#### 🌐 Other Distributions:
 Follow the official Docker installation guide for your distribution: https://docs.docker.com/engine/install/
 
-### Docker Environment Setup
+### 🐳 Docker Environment Setup
 The project includes a pre-configured Docker environment with all necessary tools:
 
 - **Base Image**: `ivando0209/build-os:latest` - Contains all Yocto build dependencies
@@ -63,17 +63,38 @@ The project includes a pre-configured Docker environment with all necessary tool
   - `$HOME/Documents` → `/home/user/Documents`
 - **Persistent Container**: Keeps running for multiple build sessions
 
-## Quick Start
+## 🚀 Quick Start
 
-### 1. Start Docker Environment
+### 1️⃣ Start Docker Environment
 
 First, start the Docker container that provides the compilation environment:
+
+```yml
+# docker-compose.yml
+
+version: '3.8'
+
+services:
+  build-os:
+    container_name: ivan-local
+    # image: cavliwireless/build-os
+    image: ivando0209/build-os:latest
+    entrypoint: /bin/bash -c "while true; do sleep 30; done"
+    restart: unless-stopped
+    user: "1000:1000" # set the user id and group id
+    hostname: ivan-local
+    network_mode: bridge
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - $HOME/workspace:/home/user/workspace # This is the workspace where the user will be able to access the files in host machine
+      - $HOME/Documents:/home/user/Documents # This is the workspace where the user will be able to access the files in host machine
+```
 
 ```bash
 cd /home/ivando/Documents/nanopc-t6
 
 # Start the Docker container with docker-compose
-docker-compose up -d
+docker-compose -f docker-compose.yml up -d
 
 # Enter the container
 docker exec -it ivan-local bash
@@ -83,7 +104,7 @@ The container will automatically mount your host directories:
 - Host `$HOME/Documents` → Container `/home/user/Documents`
 - Host `$HOME/workspace` → Container `/home/user/workspace`
 
-### 2. Clone and Initialize Repository (Inside Container)
+### 2️⃣ Clone and Initialize Repository (Inside Container)
 
 ```bash
 # Navigate to the project directory (inside container)
@@ -99,7 +120,7 @@ repo init --depth=1 -u git@github.com:ivando0209/yocto-nanopc-t6.git \
 repo sync -j16
 ```
 
-### 3. Set Up Build Environment (Inside Container)
+### 3️⃣ Set Up Build Environment (Inside Container)
 
 ```bash
 # Set up Poky buildtools environment
@@ -112,11 +133,11 @@ python poky/scripts/install-buildtools
 source poky/oe-init-build-env
 ```
 
-### 4. Configure Build (Inside Container)
+### 4️⃣ Configure Build (Inside Container)
 
 The build script automatically configures the following files:
 
-#### BitBake Layers Configuration (`conf/bblayers.conf`)
+#### ⚙️ BitBake Layers Configuration (`conf/bblayers.conf`)
 The configuration includes these essential layers:
 - **poky/meta**: Core OpenEmbedded functionality
 - **poky/meta-poky**: Poky distribution configuration
@@ -143,7 +164,7 @@ BBLAYERS ?= " \
   "
 ```
 
-#### Local Configuration (`conf/local.conf`)
+#### 🔧 Local Configuration (`conf/local.conf`)
 Key settings include:
 - **MACHINE**: Set to "nanopc-t6"
 - **DISTRO**: Uses "poky" distribution
@@ -430,14 +451,14 @@ CONF_VERSION = "2"
 
 ```
 
-### 5. Start Build (Inside Container)
+### 5️⃣ Start Build (Inside Container)
 
 ```bash
 # Build minimal core image (recommended for first build)
 bitbake core-image-minimal
 ```
 
-### 6. Managing the Docker Environment
+### 6️⃣ Managing the Docker Environment
 
 ```bash
 # Check container status
@@ -453,7 +474,7 @@ docker-compose logs build-os
 docker-compose restart build-os
 ```
 
-## Available Images
+## 💿 Available Images
 
 You can build different image types depending on your needs (all commands run inside the container):
 
@@ -474,7 +495,7 @@ bitbake core-image-x11
 bitbake core-image-sato
 ```
 
-## Build Output
+## 📦 Build Output
 
 After a successful build, you'll find the images in:
 ```
@@ -488,15 +509,15 @@ Key files include:
 - `*.dtb`: Device tree blob
 - `*rootfs.tar.xz`: Root filesystem archive
 
-## Flashing to Device
+## 💾 Flashing to Device
 
-### Using Balena Etcher (Recommended)
+### 🖱️ Using Balena Etcher (Recommended)
 1. Install Balena Etcher or use the installed `etcher-bin`
 2. Select the `.wic` or `.wic.xz` image file
 3. Select your SD card or USB drive
 4. Flash the image
 
-### Using dd (Linux/macOS)
+### 💻 Using dd (Linux/macOS)
 ```bash
 # Decompress if needed
 xz -d your-image.wic.xz
@@ -506,35 +527,35 @@ sudo dd if=your-image.wic of=/dev/sdX bs=4M status=progress
 sync
 ```
 
-## Configuration Options
+## ⚙️ Configuration Options
 
-### Machine-Specific Features
+### 🎯 Machine-Specific Features
 The NanoPC-T6 supports these optional features:
 - **U-Boot Environment**: Add `rk-u-boot-env` to `MACHINE_FEATURES`
 - **Hardware Video Decoding**: Enabled by default for GStreamer
 - **A/B Updates with RAUC**: Available for system updates
 
-### Customization Examples
+### 🛠️ Customization Examples
 
-#### Enable Development Tools
+#### 🔧 Enable Development Tools
 Add to `conf/local.conf`:
 ```bash
 EXTRA_IMAGE_FEATURES += "debug-tweaks tools-sdk tools-debug"
 ```
 
-#### Add Custom Packages
+#### 📦 Add Custom Packages
 ```bash
 IMAGE_INSTALL:append = " your-package-name"
 ```
 
-#### Enable systemd
+#### 🚀 Enable systemd
 ```bash
 INIT_MANAGER = "systemd"
 ```
 
-## Build Performance Tips
+## ⚡ Build Performance Tips
 
-### Parallel Builds
+### ⚡ Parallel Builds
 Optimize for your system:
 ```bash
 # In conf/local.conf
@@ -542,23 +563,23 @@ BB_NUMBER_THREADS = "8"    # Number of CPU cores
 PARALLEL_MAKE = "-j 8"     # Make jobs
 ```
 
-### Shared State Cache
+### 🗂️ Shared State Cache
 Enable for faster rebuilds:
 ```bash
 SSTATE_DIR = "/path/to/shared/sstate-cache"
 ```
 
-### Download Directory
+### 📁 Download Directory
 Preserve downloads between builds:
 ```bash
 DL_DIR = "/path/to/shared/downloads"
 ```
 
-## Troubleshooting
+## 🛠️ Troubleshooting
 
-### Docker-Related Issues
+### 🐳 Docker-Related Issues
 
-#### Container Won't Start
+#### ❌ Container Won't Start
 ```bash
 # Check Docker service status
 sudo systemctl status docker
@@ -571,7 +592,7 @@ docker-compose down
 docker container rm ivan-local
 ```
 
-#### Permission Issues with Mounted Volumes
+#### 🔐 Permission Issues with Mounted Volumes
 ```bash
 # Ensure correct user mapping in docker-compose.yml
 # The container runs as user 1000:1000 by default
@@ -581,7 +602,7 @@ id # Check your host user ID
 # user: "YOUR_UID:YOUR_GID"
 ```
 
-#### Container Out of Memory
+#### 💾 Container Out of Memory
 ```bash
 # Check Docker resource limits
 docker stats ivan-local
@@ -591,9 +612,9 @@ docker stats ivan-local
 # mem_limit: 16g
 ```
 
-### Build-Related Issues
+### 🔧 Build-Related Issues
 
-#### UTF-8 Locale Errors
+#### 🔤 UTF-8 Locale Errors
 The Docker container is pre-configured with UTF-8 locale support. If you still encounter locale issues:
 
 ```bash
@@ -605,7 +626,7 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 ```
 
-#### Disk Space Issues
+#### 💽 Disk Space Issues
 ```bash
 # Check available space in container
 df -h
@@ -617,7 +638,7 @@ docker system prune -a
 bitbake -c cleanall RECIPE_NAME
 ```
 
-#### Repo Sync Failures
+#### 🔄 Repo Sync Failures
 ```bash
 # Inside container - retry with verbose output
 repo sync -v -j4  # Reduce parallel jobs if network is unstable
@@ -626,7 +647,7 @@ repo sync -v -j4  # Reduce parallel jobs if network is unstable
 repo sync --force-sync
 ```
 
-### Common Issues
+### ❓ Common Issues
 
 #### Disk Space Issues
 Ensure adequate free space:
@@ -634,30 +655,29 @@ Ensure adequate free space:
 - Downloads: 20GB+
 - Shared state: 30GB+
 
-#### Python Errors
+#### 🐍 Python Errors
 Verify Python 3.8+ is selected:
 ```bash
 python --version
 sudo update-alternatives --config python
 ```
 
-### Getting Help
+### 🆘 Getting Help
 
 1. Check the build logs in `tmp/log/`
 2. Review BitBake documentation
 3. Consult the meta-rockchip layer documentation
 4. Visit the Yocto Project documentation
 
-## Development Workflow
+## 👨‍💻 Development Workflow
 
-### Docker Environment Management
+### 🐳 Docker Environment Management
 
 The Docker-based development environment provides a consistent build environment across different host systems:
 
 ```bash
 # Start development session
-docker-compose up -d
-docker exec -it ivan-local bash
+docker-compose -f docker-compose.yml up -d
 
 # Multiple terminal sessions (open new terminals on host)
 docker exec -it ivan-local bash
@@ -671,7 +691,7 @@ docker exec -it ivan-local bash
 docker-compose down
 ```
 
-### Working with the Build Environment
+### 🏗️ Working with the Build Environment
 
 All development commands should be run inside the Docker container:
 
@@ -686,12 +706,12 @@ cd /home/user/Documents/nanopc-t6
 source poky/oe-init-build-env
 ```
 
-### Adding Custom Recipes
+### ➕ Adding Custom Recipes
 1. Create a custom layer: `bitbake-layers create-layer meta-custom`
 2. Add your layer to `conf/bblayers.conf`
 3. Create recipes in `meta-custom/recipes-*/`
 
-### Kernel Development
+### 🐧 Kernel Development
 ```bash
 # Configure kernel
 bitbake virtual/kernel -c menuconfig
@@ -700,7 +720,7 @@ bitbake virtual/kernel -c menuconfig
 bitbake virtual/kernel
 ```
 
-### U-Boot Development
+### 🚢 U-Boot Development
 ```bash
 # Configure U-Boot
 bitbake u-boot -c menuconfig
@@ -709,7 +729,7 @@ bitbake u-boot -c menuconfig
 bitbake u-boot
 ```
 
-## Layer Dependencies
+## 🏗️ Layer Dependencies
 
 This build configuration uses these key layers:
 - **poky**: Core Yocto Project reference distribution
@@ -717,7 +737,7 @@ This build configuration uses these key layers:
 - **meta-rockchip**: Rockchip SoC support for RK3588
 - **meta-arm**: ARM processor support
 
-## Hardware Support
+## 🔧 Hardware Support
 
 The meta-rockchip layer provides support for:
 - **Boot**: U-Boot bootloader with Rockchip-specific patches
@@ -726,14 +746,14 @@ The meta-rockchip layer provides support for:
 - **Multimedia**: Hardware video acceleration (VPU)
 - **Connectivity**: USB, Ethernet, WiFi, Bluetooth
 
-## License
+## 📄 License
 
 This project follows the licensing of its components:
 - Yocto Project: Mixed licenses (GPL, MIT, etc.)
 - meta-rockchip: MIT License
 - Individual recipes: Various open source licenses
 
-## Contributing
+## 🤝 Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -741,7 +761,7 @@ This project follows the licensing of its components:
 4. Test the build
 5. Submit a pull request
 
-## References
+## 📚 References
 
 - [Yocto Project Documentation](https://docs.yoctoproject.org/)
 - [meta-rockchip Layer](https://git.yoctoproject.org/meta-rockchip/)

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <remote name="friendlyarm" fetch="https://github.com/friendlyarm/"/>
+  <remote name="openembedded" fetch="https://github.com/openembedded/"/>
+  <remote name="qt" fetch="https://github.com/meta-qt5/"/>
+  <remote name="yocto" fetch="https://git.yoctoproject.org/git/"/>
+  
+  <project name="meta-arm" remote="yocto" revision="a3a2c49b2149606f314b2ee0aeba7d6becd12545" upstream="master"/>
+  <project name="meta-openembedded" remote="openembedded" revision="fd6a9a2b30fab61c3761b42110b37512756f3525" upstream="master"/>
+  <project name="meta-rockchip" remote="yocto" revision="4fdc16878efb6e1af933d65da64bfb1a4dff1735" upstream="master"/>
+  <project name="meta-web-kiosk" remote="yocto" revision="7bf1e5b2cffb58d521353b00a1a3049c520875ed" upstream="master"/>
+  <project name="poky" remote="yocto" revision="1dec53b350d7d2edcc880f640b1cb2fd31ff7f0b" upstream="master"/>
+</manifest>

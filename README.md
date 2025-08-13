@@ -123,6 +123,9 @@ repo sync -j16
 ### 3️⃣ Set Up Build Environment (Inside Container)
 
 ```bash
+# Export Locale
+export LANG=en_US.UTF-8 && export LC_ALL=en_US.UTF-8 && export LC_CTYPE=en_US.UTF-8
+
 # Set up Poky buildtools environment
 . poky/buildtools/environment-setup-x86_64-pokysdk-linux
 

@@ -5,8 +5,6 @@
   <remote name="qt" fetch="https://github.com/meta-qt5/" />
   <remote name="friendlyarm" fetch="https://github.com/friendlyarm/" />
 
-  <default revision="refs/heads/kirkstone" remote="yocto" />
-
   <!-- Core Yocto layers -->
   <project path="poky" name="poky" remote="yocto" revision="kirkstone" />
   
@@ -20,7 +18,7 @@
   <project path="meta-qt5" name="meta-qt5" remote="qt" revision="master" />
   
   <!-- Browser layer (optional) -->
-  <project path="meta-web-kiosk" name="meta-web-kiosk" remote="yocto" revision="kirkstone" />
+  <project path="meta-web-kiosk" name="meta-web-kiosk" remote="yocto" revision="master" />
   
   <!-- Security layer (optional) -->
   <project path="meta-security" name="meta-security" remote="yocto" revision="kirkstone" />

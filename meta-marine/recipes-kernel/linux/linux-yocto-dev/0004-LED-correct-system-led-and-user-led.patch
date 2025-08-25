@@ -1,0 +1,59 @@
+From e420ec097a9fc414ffffee3cc2e4760391c5e6ab Mon Sep 17 00:00:00 2001
+From: Trinh Viet Quang <trinh.quang@cavliwireless.com>
+Date: Sat, 23 Aug 2025 10:42:03 +0700
+Subject: [PATCH 4/5] LED: correct system led and user led
+
+Upstream-Status: Inappropriate [oe specific]
+
+Signed-off-by: Trinh Viet Quang <trinh.quang@cavliwireless.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+index f5c298ad38ab..5837bf6a0a47 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+@@ -75,7 +75,7 @@ leds {
+ 		compatible = "gpio-leds";
+ 
+ 		sys_led: led-0 {
+-			gpios = <&gpio2 RK_PB7 GPIO_ACTIVE_HIGH>;
++			gpios = <&gpio1 RK_PB1 GPIO_ACTIVE_HIGH>;
+ 			label = "system-led";
+ 			linux,default-trigger = "heartbeat";
+ 			pinctrl-names = "default";
+@@ -83,7 +83,7 @@ sys_led: led-0 {
+ 		};
+ 
+ 		usr_led: led-1 {
+-			gpios = <&gpio2 RK_PC0 GPIO_ACTIVE_HIGH>;
++			gpios = <&gpio1 RK_PB5 GPIO_ACTIVE_HIGH>;
+ 			label = "user-led";
+ 			pinctrl-names = "default";
+ 			pinctrl-0 = <&usr_led_pin>;
+@@ -698,11 +698,11 @@ &pd_gpu {
+ &pinctrl {
+ 	gpio-leds {
+ 		sys_led_pin: sys-led-pin {
+-			rockchip,pins = <2 RK_PB7 RK_FUNC_GPIO &pcfg_pull_none>;
++			rockchip,pins = <1 RK_PB1 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
+ 
+ 		usr_led_pin: usr-led-pin {
+-			rockchip,pins = <2 RK_PC0 RK_FUNC_GPIO &pcfg_pull_none>;
++			rockchip,pins = <1 RK_PB5 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
+ 	};
+ 
+@@ -728,6 +728,7 @@ rtl8211f {
+ 		rtl8211f_rst: rtl8211f-rst {
+ 			rockchip,pins = <3 RK_PB7 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
++	};
+ 
+ 	pcie {
+ 		pcie2_0_rst: pcie2-0-rst {
+-- 
+2.43.0
+

@@ -1,0 +1,70 @@
+From acfc5342b39784f38f8946c834d6ffedf8906b2c Mon Sep 17 00:00:00 2001
+From: Trinh Viet Quang <trinh.quang@cavliwireless.com>
+Date: Sat, 23 Aug 2025 02:28:24 +0700
+Subject: [PATCH 2/5] fix gmac1
+
+Upstream-Status: Inappropriate [oe specific]
+
+Signed-off-by: Trinh Viet Quang <trinh.quang@cavliwireless.com>
+---
+ .../boot/dts/rockchip/rk3588-nanopc-t6.dtsi   | 31 +++++++++----------
+ 1 file changed, 14 insertions(+), 17 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+index 79c667a85d18..cc7800dd2be9 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+@@ -21,8 +21,7 @@ / {
+ 	aliases {
+ 		mmc0 = &sdhci;
+ 		mmc1 = &sdmmc;
+-		ethernet0 = &gmac0;
+-		ethernet1 = &gmac1;
++		ethernet0 = &gmac1;
+ 	};
+ 
+ 	adc-keys-0 {
+@@ -1264,21 +1263,6 @@ vp1_out_hdmi1: endpoint@ROCKCHIP_VOP2_EP_HDMI1 {
+ 	};
+ };
+ 
+-&gmac0 {
+-	clock_in_out = "output";
+-	phy-handle = <&rgmii_phy0>;
+-	phy-mode = "rgmii-rxid";
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&gmac0_miim
+-		     &gmac0_tx_bus2
+-		     &gmac0_rx_bus2
+-		     &gmac0_rgmii_clk
+-		     &gmac0_rgmii_bus>;
+-	tx_delay = <0x45>;
+-	rx_delay = <0x4a>;
+-	status = "okay";
+-};
+-
+ &gmac1 {
+ 	clock_in_out = "output";
+ 	phy-handle = <&rgmii_phy1>;
+@@ -1292,4 +1276,17 @@ &gmac1_rgmii_clk
+ 	tx_delay = <0x42>;
+ 	rx_delay = <0x4f>;
+ 	status = "okay";
++};
++
++&mdio1 {
++	rgmii_phy1: ethernet-phy@1 {
++		/* RTL8211F */
++		compatible = "ethernet-phy-id001c.c916";
++		reg = <0x1>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&rtl8211f_rst>;
++		reset-assert-us = <20000>;
++		reset-deassert-us = <100000>;
++		reset-gpios = <&gpio3 RK_PB7 GPIO_ACTIVE_LOW>;
++	};
+ };
+\ No newline at end of file
+-- 
+2.43.0
+

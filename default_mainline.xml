@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <remote name="yocto" fetch="https://git.yoctoproject.org/git/" />
+  <remote name="openembedded" fetch="https://github.com/openembedded/" />
+  <remote name="qt" fetch="https://github.com/meta-qt5/" />
+  <remote name="friendlyarm" fetch="https://github.com/friendlyarm/" />
+
+  <!-- Core Yocto layers -->
+  <project path="poky" name="poky" remote="yocto" revision="master" />
+  
+  <!-- OpenEmbedded layers -->
+  <project path="meta-openembedded" name="meta-openembedded" remote="openembedded" revision="master" />
+  
+  <!-- Rockchip specific layers -->
+  <project path="meta-rockchip" name="meta-rockchip" remote="yocto" revision="master" />
+  <project path="meta-arm" name="meta-arm" remote="yocto" revision="master" />
+
+  <!-- Additional useful layers -->
+  <!-- <project path="meta-qt5" name="meta-qt5" remote="qt" revision="master" /> -->
+  
+  <!-- Browser layer (optional) -->
+  <project path="meta-web-kiosk" name="meta-web-kiosk" remote="yocto" revision="master" />
+  
+  <!-- Security layer (optional) -->
+  <!-- <project path="meta-security" name="meta-security" remote="yocto" revision="whinlatter" /> -->
+
+</manifest>

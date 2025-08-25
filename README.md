@@ -142,7 +142,7 @@ The configuration includes these essential layers:
 - **meta-rockchip**: Rockchip SoC support layer
 - **meta-arm/meta-arm**: ARM architecture support
 - **meta-arm/meta-arm-toolchain**: ARM toolchain
-- **meta-arm/meta-marine**: Custom image for marine device
+- **meta-marine**: Custom image for marine device
 
 #### 🔧 Local Configuration (`conf/local.conf`)
 Key settings include:

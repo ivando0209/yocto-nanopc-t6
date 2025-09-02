@@ -1,0 +1,35 @@
+From cb1a6e92691e444f8c99aa6d0bbcb8c00c405ed7 Mon Sep 17 00:00:00 2001
+From: Trinh Viet Quang <trinh.quang@cavliwireless.com>
+Date: Mon, 25 Aug 2025 09:18:47 +0700
+Subject: [PATCH 12/13] enable sata2
+
+Upstream-Status: Inappropriate [oe specific]
+
+Signed-off-by: Trinh Viet Quang <trinh.quang@cavliwireless.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+index 37cde87845eb..024766aa1bbd 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+@@ -677,6 +677,15 @@ &pcie2x1l1 {
+ 	vpcie3v3-supply = <&vcc3v3_pcie2x1l1>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pcie2_1_rst>;
++	status = "disabled";
++};
++
++sata2: sata@1 {
++	compatible = "marvell,armada-3700-sata";
++	reset-gpios = <&gpio3 RK_PD1 GPIO_ACTIVE_HIGH>;
++	vpcie3v3-supply = <&vcc3v3_pcie2x1l1>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pcie2_1_rst>;
+ 	status = "okay";
+ };
+ 
+-- 
+2.43.0
+

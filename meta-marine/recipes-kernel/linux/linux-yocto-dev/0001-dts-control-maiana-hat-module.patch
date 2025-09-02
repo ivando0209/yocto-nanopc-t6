@@ -1,0 +1,54 @@
+From 712752112465b7892bf83528e5fb1caf21dd7925 Mon Sep 17 00:00:00 2001
+From: Trinh Viet Quang <vietquang0708@gmail.com>
+Date: Wed, 3 Sep 2025 00:40:56 +0700
+Subject: [PATCH] dts: control maiana hat module
+
+Upstream-Status: Inappropriate [oe specific]
+
+Signed-off-by: Trinh Viet Quang <vietquang0708@gmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+index a61ab27ee464..d68e8bf657c9 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+@@ -772,6 +772,16 @@ rtl8211f_rst: rtl8211f-rst {
+ 		};
+ 	};
+ 
++	maianal {
++		power_off: power-off {
++			rockchip,pins = <0 RK_PD4 RK_FUNC_GPIO &pcfg_pull_up>;
++		};
++
++		power_shutdown: power-shutdown {
++			rockchip,pins = <0 RK_PD5 RK_FUNC_GPIO &pcfg_pull_up>;
++		};
++	};
++
+ 	pcie {
+ 		pcie2_0_rst: pcie2-0-rst {
+ 			rockchip,pins = <4 RK_PB3 RK_FUNC_GPIO &pcfg_pull_none>;
+@@ -1268,7 +1278,7 @@ &usb_host0_ohci {
+ &usb_host0_xhci {
+ 	usb-role-switch;
+ 	status = "okay";
+-
++	dr_mode = "host";
+ 	port {
+ 		usb_host0_xhci_drd_sw: endpoint {
+ 			remote-endpoint = <&usbc0_hs>;
+@@ -1352,7 +1362,7 @@ rgmii_phy1: ethernet-phy@1 {
+  */
+ &uart0 {
+ 	status = "okay";
+-	pinctrl-0 = <&uart0m2_xfer>;
++	pinctrl-0 = <&uart0m2_xfer &power_off &power_shutdown>;
+ };
+ 
+ /*
+-- 
+2.43.0
+

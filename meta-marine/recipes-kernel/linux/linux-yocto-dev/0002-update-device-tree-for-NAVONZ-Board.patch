@@ -1,7 +1,7 @@
 From 4a634edd08273c60c3444758ffc57d08dd9d1897 Mon Sep 17 00:00:00 2001
 From: Trinh Viet Quang <trinh.quang@cavliwireless.com>
 Date: Sat, 23 Aug 2025 00:20:38 +0700
-Subject: [PATCH 1/5] update device tree for NAVONZ Board
+Subject: [PATCH 02/13] update device tree for NAVONZ Board
 
 Upstream-Status: Inappropriate [oe specific]
 

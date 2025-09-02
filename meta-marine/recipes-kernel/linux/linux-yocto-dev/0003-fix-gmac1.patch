@@ -1,7 +1,7 @@
 From acfc5342b39784f38f8946c834d6ffedf8906b2c Mon Sep 17 00:00:00 2001
 From: Trinh Viet Quang <trinh.quang@cavliwireless.com>
 Date: Sat, 23 Aug 2025 02:28:24 +0700
-Subject: [PATCH 2/5] fix gmac1
+Subject: [PATCH 03/13] fix gmac1
 
 Upstream-Status: Inappropriate [oe specific]
 

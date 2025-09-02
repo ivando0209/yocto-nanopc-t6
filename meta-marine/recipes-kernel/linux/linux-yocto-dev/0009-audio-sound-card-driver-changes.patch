@@ -1,0 +1,50 @@
+From 1e24147bde0f1e3263f57cb42d774ddaab745d23 Mon Sep 17 00:00:00 2001
+From: Trinh Viet Quang <trinh.quang@cavliwireless.com>
+Date: Mon, 25 Aug 2025 00:59:53 +0700
+Subject: [PATCH 09/13] audio: sound card driver changes
+
+Upstream-Status: Inappropriate [oe specific]
+
+Signed-off-by: Trinh Viet Quang <trinh.quang@cavliwireless.com>
+---
+ .../boot/dts/rockchip/rk3588-nanopc-t6.dtsi     | 17 ++++++++++++++++-
+ 1 file changed, 16 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+index 7de17b30c571..6cb4892c4bb3 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+@@ -91,7 +91,7 @@ usr_led: led-1 {
+ 	};
+ 
+ 	sound {
+-		status = "okay";
++		status = "disable";
+ 		compatible = "simple-audio-card";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&hp_det>;
+@@ -119,6 +119,21 @@ simple-audio-card,codec {
+ 		};
+ 	};
+ 
++	analog-sound {
++		status = "okay";
++		compatible = "audio-graph-card";
++		label = "rk3588-es8316";
++		dais = <&i2s0_8ch_p0>;
++		hp-det-gpios = <&gpio1 RK_PC4 GPIO_ACTIVE_HIGH>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&hp_det>;
++		routing = "MIC2", "Mic Jack",
++			  "Headphones", "HPOL",
++			  "Headphones", "HPOR";
++		widgets = "Microphone", "Mic Jack",
++			  "Headphone", "Headphones";
++	};
++
+ 	vcc12v_dcin: regulator-vcc12v-dcin {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vcc12v_dcin";
+-- 
+2.43.0
+

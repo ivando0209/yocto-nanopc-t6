@@ -1,0 +1,28 @@
+From d53e0862505c3d88245e5ccb2bf7dffec879eee1 Mon Sep 17 00:00:00 2001
+From: Trinh Viet Quang <vietquang0708@gmail.com>
+Date: Mon, 1 Sep 2025 18:23:10 +0700
+Subject: [PATCH] pcie2.0-2: correct reset level
+
+Upstream-Status: Inappropriate [oe specific]
+
+Signed-off-by: Trinh Viet Quang <vietquang0708@gmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+index f1d838ca2031..ae4ec600254b 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+@@ -701,7 +701,7 @@ &pcie2x1l2 {
+ 	// PWR_EN is connected to 1 RK_PA7
+ 	// - RESET is connected to 4 RK_PA2
+ 	//===============================================
+-	reset-gpios = <&gpio4 RK_PA2 GPIO_ACTIVE_HIGH>;
++	reset-gpios = <&gpio4 RK_PA2 GPIO_ACTIVE_LOW>;
+ 	vpcie3v3-supply = <&vcc3v3_pcie2x1l2>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pcie2_2_rst>;
+-- 
+2.43.0
+

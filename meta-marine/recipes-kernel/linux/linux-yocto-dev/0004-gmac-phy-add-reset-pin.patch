@@ -1,7 +1,7 @@
 From 19b04b5f262dfe63577a615e3324c8509294f6df Mon Sep 17 00:00:00 2001
 From: Trinh Viet Quang <trinh.quang@cavliwireless.com>
 Date: Sat, 23 Aug 2025 02:35:18 +0700
-Subject: [PATCH 3/5] gmac: phy: add reset pin
+Subject: [PATCH 04/13] gmac: phy: add reset pin
 
 Upstream-Status: Inappropriate [oe specific]
 

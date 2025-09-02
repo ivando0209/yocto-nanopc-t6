@@ -1,0 +1,55 @@
+From c8296ad6c4c5788d70a89f1e0f906b014ece6f80 Mon Sep 17 00:00:00 2001
+From: Trinh Viet Quang <trinh.quang@cavliwireless.com>
+Date: Sun, 24 Aug 2025 21:55:48 +0700
+Subject: [PATCH 07/13] enable es8316 codec
+
+Upstream-Status: Inappropriate [oe specific]
+
+Signed-off-by: Trinh Viet Quang <trinh.quang@cavliwireless.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+index 512b8f0c0c24..7de17b30c571 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+@@ -91,6 +91,7 @@ usr_led: led-1 {
+ 	};
+ 
+ 	sound {
++		status = "okay";
+ 		compatible = "simple-audio-card";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&hp_det>;
+@@ -114,7 +115,7 @@ simple-audio-card,cpu {
+ 			sound-dai = <&i2s0_8ch>;
+ 		};
+ 		simple-audio-card,codec {
+-			sound-dai = <&rt5616>;
++			sound-dai = <&es8316>;
+ 		};
+ 	};
+ 
+@@ -682,7 +683,7 @@ &pcie2x1l2 {
+ };
+ 
+ &pcie30phy {
+-	status = "disabled";
++	status = "okay";
+ };
+ 
+ &pcie3x4 {
+@@ -1285,7 +1286,9 @@ &gmac1_rgmii_clk
+ };
+ 
+ &mdio1 {
++	status = "okay";
+ 	rgmii_phy1: ethernet-phy@1 {
++		status = "okay";
+ 		/* RTL8211F */
+ 		compatible = "ethernet-phy-id001c.c916";
+ 		reg = <0x1>;
+-- 
+2.43.0
+

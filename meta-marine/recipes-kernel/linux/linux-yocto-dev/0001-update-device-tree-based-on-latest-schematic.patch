@@ -1,0 +1,76 @@
+From 424aa2b606c5b9fd78324eac70e3d35523a61fc9 Mon Sep 17 00:00:00 2001
+From: Trinh Viet Quang <vietquang0708@gmail.com>
+Date: Mon, 1 Sep 2025 16:01:41 +0700
+Subject: [PATCH] update device tree based on latest schematic
+
++ gmac1: update phy reset.
++ enable uart0 for AIS/GPS module
+
+Upstream-Status: Inappropriate [oe specific]
+
+Signed-off-by: Trinh Viet Quang <vietquang0708@gmail.com>
+---
+ .../boot/dts/rockchip/rk3588-nanopc-t6.dtsi   | 30 +++++++++++++++----
+ 1 file changed, 24 insertions(+), 6 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+index a58e1c5005af..728ff1c516c2 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+@@ -22,8 +22,6 @@ aliases {
+ 		mmc0 = &sdhci;
+ 		mmc1 = &sdmmc;
+ 		ethernet0 = &gmac1;
+-		serial0 = &uart2;
+-		serial1 = &uart7;
+ 	};
+ 
+ 	adc-keys-0 {
+@@ -753,7 +751,7 @@ ir_receiver_pin: ir-receiver-pin {
+ 
+ 	rtl8211f {
+ 		rtl8211f_rst: rtl8211f-rst {
+-			rockchip,pins = <3 RK_PB7 RK_FUNC_GPIO &pcfg_pull_none>;
++			rockchip,pins = <3 RK_PC1 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
+ 	};
+ 
+@@ -1322,11 +1320,31 @@ rgmii_phy1: ethernet-phy@1 {
+ 		pinctrl-0 = <&rtl8211f_rst>;
+ 		reset-assert-us = <20000>;
+ 		reset-deassert-us = <100000>;
+-		reset-gpios = <&gpio3 RK_PB7 GPIO_ACTIVE_LOW>;
++		reset-gpios = <&gpio3 RK_PC1 GPIO_ACTIVE_LOW>;
+ 	};
+ };
+ 
+-&uart7 {
++/*
++ * Serial ports
++ * AIS/ GPS on UART0
++ */
++&uart0 {
+ 	status = "okay";
+-	pinctrl-0 = <&uart7m0_xfer>;
++	pinctrl-0 = <&uart0m2_xfer>;
+ };
++
++/*
++ * NMEA1 on UART9
++ */
++// &uart9 {
++// 	status = "okay";
++// 	pinctrl-0 = <&uart9m2_xfer>;
++// };
++
++/*
++ * NMEA2 on UART7
++ */
++// &uart7 {
++// 	status = "okay";
++// 	pinctrl-0 = <&uart7m2_xfer>;
++// };
+\ No newline at end of file
+-- 
+2.43.0
+

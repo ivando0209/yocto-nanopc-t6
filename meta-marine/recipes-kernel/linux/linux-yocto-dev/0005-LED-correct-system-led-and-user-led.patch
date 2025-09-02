@@ -1,7 +1,7 @@
 From e420ec097a9fc414ffffee3cc2e4760391c5e6ab Mon Sep 17 00:00:00 2001
 From: Trinh Viet Quang <trinh.quang@cavliwireless.com>
 Date: Sat, 23 Aug 2025 10:42:03 +0700
-Subject: [PATCH 4/5] LED: correct system led and user led
+Subject: [PATCH 05/13] LED: correct system led and user led
 
 Upstream-Status: Inappropriate [oe specific]
 

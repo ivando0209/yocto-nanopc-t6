@@ -1,0 +1,63 @@
+From ab59bd61b3c3f9d5fbcab8e991df1bef025e4f1a Mon Sep 17 00:00:00 2001
+From: Trinh Viet Quang <vietquang0708@gmail.com>
+Date: Mon, 1 Sep 2025 23:55:07 +0700
+Subject: [PATCH] test intel wifi
+
+Upstream-Status: Inappropriate [oe specific]
+
+Signed-off-by: Trinh Viet Quang <vietquang0708@gmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi | 9 ++++-----
+ 1 file changed, 4 insertions(+), 5 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+index 6d8d86bb643d..f0784be6e2a7 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+@@ -69,7 +69,7 @@ ir-receiver {
+ 		gpios = <&gpio0 RK_PD4 GPIO_ACTIVE_LOW>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&ir_receiver_pin>;
+-		status = "disable";
++		status = "disabled";
+ 	};
+ 
+ 	leds {
+@@ -678,7 +678,7 @@ &pcie2x1l1 {
+ 	vpcie3v3-supply = <&vcc3v3_pcie2x1l1>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pcie2_1_rst>;
+-	status = "disabled";
++	status = "okay";
+ };
+ 
+ &sata2 {
+@@ -687,7 +687,7 @@ &sata2 {
+ 	vpcie3v3-supply = <&vcc3v3_pcie2x1l1>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pcie2_1_rst>;
+-	status = "okay";
++	status = "disable";
+ };
+ 
+ &pcie2x1l2 {
+@@ -695,8 +695,6 @@ &pcie2x1l2 {
+ 	// ADDED: 2025-08-22
+ 	// AUTHOR: QUANG TV
+ 	// CHAGED:
+-	// - ADD: PCIe M.2 2.5G Ethernet
+-	// - Using GPIO4 RK_PA4 instead of RK_PA2 to
+ 	// control the power enable for lane 2
+ 	// - Lane 2 is used for wifi/bt module
+ 	// PWR_EN is connected to 1 RK_PA7
+@@ -1272,6 +1270,7 @@ &usb_host1_ehci {
+ };
+ 
+ &usb_host1_ohci {
++	dr_mode = "host";
+ 	status = "okay";
+ };
+ 
+-- 
+2.43.0
+

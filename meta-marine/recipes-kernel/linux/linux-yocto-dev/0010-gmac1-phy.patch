@@ -1,0 +1,41 @@
+From 01c46581c780d95be295488ab6611d8e2391e87d Mon Sep 17 00:00:00 2001
+From: Trinh Viet Quang <trinh.quang@cavliwireless.com>
+Date: Mon, 25 Aug 2025 02:06:39 +0700
+Subject: [PATCH 10/13] gmac1: phy
+
+Upstream-Status: Inappropriate [oe specific]
+
+Signed-off-by: Trinh Viet Quang <trinh.quang@cavliwireless.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+index 6cb4892c4bb3..04e4836483c9 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+@@ -1288,15 +1288,17 @@ vp1_out_hdmi1: endpoint@ROCKCHIP_VOP2_EP_HDMI1 {
+ &gmac1 {
+ 	clock_in_out = "output";
+ 	phy-handle = <&rgmii_phy1>;
+-	phy-mode = "rgmii-rxid";
++	phy-mode = "rgmii-id";
+ 	pinctrl-names = "default";
++	phy-supply = <&vcc_3v3_s0>;
+ 	pinctrl-0 = <&gmac1_miim
+ 		     &gmac1_tx_bus2
+ 		     &gmac1_rx_bus2
+ 		     &gmac1_rgmii_clk
+-		     &gmac1_rgmii_bus>;
+-	tx_delay = <0x42>;
+-	rx_delay = <0x4f>;
++		     &gmac1_rgmii_bus
++		     &gmac1_clkinout>;
++	// tx_delay = <0x42>;
++	// rx_delay = <0x4f>;
+ 	status = "okay";
+ };
+ 
+-- 
+2.43.0
+

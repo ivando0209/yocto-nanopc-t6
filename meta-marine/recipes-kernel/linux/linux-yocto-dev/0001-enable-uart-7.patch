@@ -1,0 +1,63 @@
+From ee84bb51e4be0e097fe2f75bae6e73a5d1111cee Mon Sep 17 00:00:00 2001
+From: Trinh Viet Quang <vietquang0708@gmail.com>
+Date: Mon, 1 Sep 2025 13:16:21 +0700
+Subject: [PATCH] enable uart 7
+
+Upstream-Status: Inappropriate [oe specific]
+
+Signed-off-by: Trinh Viet Quang <vietquang0708@gmail.com>
+---
+ .../boot/dts/rockchip/rk3588-nanopc-t6.dtsi   | 21 ++++++++++++-------
+ 1 file changed, 13 insertions(+), 8 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+index 0c549fb5ba1f..a58e1c5005af 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+@@ -22,6 +22,8 @@ aliases {
+ 		mmc0 = &sdhci;
+ 		mmc1 = &sdmmc;
+ 		ethernet0 = &gmac1;
++		serial0 = &uart2;
++		serial1 = &uart7;
+ 	};
+ 
+ 	adc-keys-0 {
+@@ -1297,17 +1299,15 @@ vp1_out_hdmi1: endpoint@ROCKCHIP_VOP2_EP_HDMI1 {
+ &gmac1 {
+ 	clock_in_out = "output";
+ 	phy-handle = <&rgmii_phy1>;
+-	phy-mode = "rgmii-id";
+-	pinctrl-names = "default";
+-	phy-supply = <&vcc_3v3_s0>;
++	phy-mode = "rgmii";
+ 	pinctrl-0 = <&gmac1_miim
+ 		     &gmac1_tx_bus2
+ 		     &gmac1_rx_bus2
+ 		     &gmac1_rgmii_clk
+-		     &gmac1_rgmii_bus
+-		     &gmac1_clkinout>;
+-	// tx_delay = <0x42>;
+-	// rx_delay = <0x4f>;
++		     &gmac1_rgmii_bus>;
++	pinctrl-names = "default";
++	tx_delay = <0x3a>;
++	rx_delay = <0x3e>;
+ 	status = "okay";
+ };
+ 
+@@ -1324,4 +1324,9 @@ rgmii_phy1: ethernet-phy@1 {
+ 		reset-deassert-us = <100000>;
+ 		reset-gpios = <&gpio3 RK_PB7 GPIO_ACTIVE_LOW>;
+ 	};
+-};
+\ No newline at end of file
++};
++
++&uart7 {
++	status = "okay";
++	pinctrl-0 = <&uart7m0_xfer>;
++};
+-- 
+2.43.0
+

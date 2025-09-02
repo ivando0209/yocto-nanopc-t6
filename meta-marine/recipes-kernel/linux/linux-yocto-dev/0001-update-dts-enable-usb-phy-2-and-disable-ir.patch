@@ -1,0 +1,41 @@
+From 62c4e1667a6b75c99c3cc693541a2f019573f754 Mon Sep 17 00:00:00 2001
+From: Trinh Viet Quang <vietquang0708@gmail.com>
+Date: Mon, 1 Sep 2025 21:58:24 +0700
+Subject: [PATCH] update dts: enable usb phy 2 and disable ir
+
++ enable usb phy 2 for external usb BT
++ disbale IR to avoid unexpect interrupt
+
+Upstream-Status: Inappropriate [oe specific]
+
+Signed-off-by: Trinh Viet Quang <vietquang0708@gmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+index ae4ec600254b..6d8d86bb643d 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+@@ -69,6 +69,7 @@ ir-receiver {
+ 		gpios = <&gpio0 RK_PD4 GPIO_ACTIVE_LOW>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&ir_receiver_pin>;
++		status = "disable";
+ 	};
+ 
+ 	leds {
+@@ -1274,6 +1275,10 @@ &usb_host1_ohci {
+ 	status = "okay";
+ };
+ 
++&usb_host2_xhci {
++	status = "okay";
++};
++
+ &vop_mmu {
+ 	status = "okay";
+ };
+-- 
+2.43.0
+

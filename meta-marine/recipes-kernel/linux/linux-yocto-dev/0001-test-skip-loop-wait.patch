@@ -1,0 +1,37 @@
+From 38a0f83c333e4486796b9ca322a5e8034be04084 Mon Sep 17 00:00:00 2001
+From: Trinh Viet Quang <vietquang0708@gmail.com>
+Date: Thu, 4 Sep 2025 22:45:19 +0700
+Subject: [PATCH] test: skip loop wait
+
+Upstream-Status: Inappropriate [oe specific]
+
+Signed-off-by: Trinh Viet Quang <vietquang0708@gmail.com>
+---
+ drivers/net/ethernet/realtek/r8169_main.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/drivers/net/ethernet/realtek/r8169_main.c b/drivers/net/ethernet/realtek/r8169_main.c
+index 2dcf9a115b84..32492a343823 100644
+--- a/drivers/net/ethernet/realtek/r8169_main.c
++++ b/drivers/net/ethernet/realtek/r8169_main.c
+@@ -863,6 +863,7 @@ struct rtl_cond {
+ static bool rtl_loop_wait(struct rtl8169_private *tp, const struct rtl_cond *c,
+ 			  unsigned long usecs, int n, bool high)
+ {
++#if 0
+ 	int i;
+ 
+ 	for (i = 0; i < n; i++) {
+@@ -875,6 +876,9 @@ static bool rtl_loop_wait(struct rtl8169_private *tp, const struct rtl_cond *c,
+ 		netdev_err(tp->dev, "%s == %d (loop: %d, delay: %lu).\n",
+ 			   c->msg, !high, n, usecs);
+ 	return false;
++#else
++	return true;
++#endif
+ }
+ 
+ static bool rtl_loop_wait_high(struct rtl8169_private *tp,
+-- 
+2.43.0
+

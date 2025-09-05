@@ -1,0 +1,37 @@
+From 1f39b7664b1609d503886d83aacbe28eaf9dbec5 Mon Sep 17 00:00:00 2001
+From: Trinh Viet Quang <vietquang0708@gmail.com>
+Date: Thu, 4 Sep 2025 18:04:12 +0700
+Subject: [PATCH] kernel: driver: correct write function
+
+Upstream-Status: Inappropriate [oe specific]
+
+Signed-off-by: Trinh Viet Quang <vietquang0708@gmail.com>
+---
+ drivers/net/ethernet/realtek/r8169_main.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/net/ethernet/realtek/r8169_main.c b/drivers/net/ethernet/realtek/r8169_main.c
+index 43170500d566..b2e2b6ec1b0f 100644
+--- a/drivers/net/ethernet/realtek/r8169_main.c
++++ b/drivers/net/ethernet/realtek/r8169_main.c
+@@ -1295,7 +1295,7 @@ static void rtl_writephy(struct rtl8169_private *tp, int location, int val)
+ 		r8168dp_2_mdio_write(tp, location, val);
+ 		break;
+ 	case RTL_GIGA_MAC_VER_40 ... RTL_GIGA_MAC_VER_LAST:
+-		r8168g_mdio_write(tp, location, val);
++		r8169_mdio_write(tp, location, val);
+ 		break;
+ 	default:
+ 		r8169_mdio_write(tp, location, val);
+@@ -1310,7 +1310,7 @@ static int rtl_readphy(struct rtl8169_private *tp, int location)
+ 	case RTL_GIGA_MAC_VER_31:
+ 		return r8168dp_2_mdio_read(tp, location);
+ 	case RTL_GIGA_MAC_VER_40 ... RTL_GIGA_MAC_VER_LAST:
+-		return r8168g_mdio_read(tp, location);
++		return r8168g_mdio_read(tp, location);
+ 	default:
+ 		return r8169_mdio_read(tp, location);
+ 	}
+-- 
+2.43.0
+

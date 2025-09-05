@@ -4,7 +4,7 @@
   <remote name="openembedded" fetch="https://github.com/openembedded/"/>
   <remote name="qt" fetch="https://github.com/meta-qt5/"/>
   <remote name="yocto" fetch="https://git.yoctoproject.org/git/"/>
-  <remote name="github" etch="ssh://git@github.com/"/>
+  <remote name="github" fetch="ssh://git@github.com/"/>
 
   <project name="meta-arm" remote="yocto" revision="a3a2c49b2149606f314b2ee0aeba7d6becd12545" upstream="master"/>
   <project name="meta-openembedded" remote="openembedded" revision="fd6a9a2b30fab61c3761b42110b37512756f3525" upstream="master"/>

@@ -4,7 +4,7 @@
   <remote name="openembedded" fetch="https://github.com/openembedded/"/>
   <remote name="qt" fetch="https://github.com/meta-qt5/"/>
   <remote name="yocto" fetch="https://git.yoctoproject.org/git/"/>
-  <remote name="github" fetch="ssh://git@github.com/"/>
+  <remote name="github" fetch="ssh://git@github.com/ivando0209/"/>
 
   <project name="meta-arm" remote="yocto" revision="a3a2c49b2149606f314b2ee0aeba7d6becd12545" upstream="master"/>
   <project name="meta-openembedded" remote="openembedded" revision="fd6a9a2b30fab61c3761b42110b37512756f3525" upstream="master"/>
@@ -12,8 +12,8 @@
   <project name="meta-web-kiosk" remote="yocto" revision="7bf1e5b2cffb58d521353b00a1a3049c520875ed" upstream="master"/>
   <project name="poky" remote="yocto" revision="1dec53b350d7d2edcc880f640b1cb2fd31ff7f0b" upstream="master"/>
 
-  <project name="ivando0209/yocto-nanopc-t6"  path="meta-maritime" remote="github" revision="meta-marine" >
-    <copyfile src="meta-maritime/source-build-marine-image.sh" dest="source-build-marine-image.sh"/>
+  <project name="meta-maritime" remote="github" revision="meta-marine" >
+    <copyfile src="source-build-marine-image.sh" dest="source-build-marine-image.sh"/>
   </project>
 
 </manifest>

@@ -1,0 +1,135 @@
+From a7c4f28e9634940e4f035140d532e70193b3f647 Mon Sep 17 00:00:00 2001
+From: Trinh Viet Quang <vietquang0708@gmail.com>
+Date: Wed, 10 Sep 2025 01:37:19 +0700
+Subject: [PATCH] kernel: enable uart/i2c devices
+
+Upstream-Status: Inappropriate [oe specific]
+
+Signed-off-by: Trinh Viet Quang <vietquang0708@gmail.com>
+---
+ .../boot/dts/rockchip/rk3588-nanopc-t6.dtsi   | 50 ++++++++++++++-----
+ 1 file changed, 38 insertions(+), 12 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+index 55a37fd6ef5f..c5c73fd4f174 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+@@ -76,7 +76,7 @@ leds {
+ 		compatible = "gpio-leds";
+ 
+ 		sys_led: led-0 {
+-			gpios = <&gpio1 RK_PB1 GPIO_ACTIVE_HIGH>;
++			gpios = <&gpio2 RK_PB7 GPIO_ACTIVE_HIGH>;
+ 			label = "system-led";
+ 			linux,default-trigger = "heartbeat";
+ 			pinctrl-names = "default";
+@@ -84,6 +84,7 @@ sys_led: led-0 {
+ 		};
+ 
+ 		usr_led: led-1 {
++			status = "disabled";
+ 			gpios = <&gpio1 RK_PB5 GPIO_ACTIVE_HIGH>;
+ 			label = "user-led";
+ 			pinctrl-names = "default";
+@@ -92,7 +93,7 @@ usr_led: led-1 {
+ 	};
+ 
+ 	sound {
+-		status = "disable";
++		status = "disabled";
+ 		compatible = "simple-audio-card";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&hp_det>;
+@@ -734,7 +735,7 @@ &pcie30phy {
+ &pcie3x4 {
+ 	reset-gpios = <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
+ 	vpcie3v3-supply = <&vcc3v3_pcie30>;
+-	status = "disabled";
++	status = "disabled";
+ };
+ 
+ &pd_gpu {
+@@ -744,7 +745,7 @@ &pd_gpu {
+ &pinctrl {
+ 	gpio-leds {
+ 		sys_led_pin: sys-led-pin {
+-			rockchip,pins = <1 RK_PB1 RK_FUNC_GPIO &pcfg_pull_none>;
++			rockchip,pins = <2 RK_PB7 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
+ 
+ 		usr_led_pin: usr-led-pin {
+@@ -844,7 +845,7 @@ &sdhci {
+ 	non-removable;
+ 	max-frequency = <200000000>;
+ 	mmc-hs400-1_8v;
+-	mmc-hs400-enhanced-strobe;
++	// mmc-hs400-enhanced-strobe;
+ 	status = "okay";
+ };
+ 
+@@ -859,7 +860,7 @@ &sdmmc {
+ 	sd-uhs-sdr104;
+ 	vmmc-supply = <&vcc3v3_sd_s0>;
+ 	vqmmc-supply = <&vccio_sd_s0>;
+-	status = "disabled";
++	status = "okay";
+ };
+ 
+ /* optional on non-LTS, populated on LTS version */
+@@ -1368,21 +1369,46 @@ rgmii_phy1: ethernet-phy@1 {
+  */
+ &uart0 {
+ 	status = "okay";
+-	pinctrl-0 = <&uart0m2_xfer &power_off &power_shutdown>;
++	pinctrl-0 = <&uart0m2_xfer>;
++};
++
++/*
++ * NMEA1 on UART6
++ */
++&uart6 {
++	status = "okay";
++	pinctrl-0 = <&uart6m1_xfer>;
+ };
+ 
++
+ /*
+- * NMEA1 on UART9
++ * NMEA2 on UART4
+  */
+-&uart9 {
++&uart4 {
+ 	status = "okay";
+-	pinctrl-0 = <&uart9m2_xfer>;
++	pinctrl-0 = <&uart4m2_xfer>;
+ };
+ 
+ /*
+- * NMEA2 on UART7
++ * MOTOR on UART7
+  */
+ &uart7 {
+ 	status = "okay";
+ 	pinctrl-0 = <&uart7m2_xfer>;
+-};
+\ No newline at end of file
++};
++
++/*
++ I2C for IMU
++*/
++&i2c3 {
++	status = "okay";
++	pinctrl-0 = <&i2c3m1_xfer>;
++};
++
++/*
++	SPI for NMEA2K
++	Pin is not correct - disable
++*/
++
++
++
+-- 
+2.43.0
+

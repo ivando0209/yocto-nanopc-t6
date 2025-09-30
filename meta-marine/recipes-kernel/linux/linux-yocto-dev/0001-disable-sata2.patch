@@ -1,0 +1,44 @@
+From 7b17e8df40f9507862d1c2b130194855d7774948 Mon Sep 17 00:00:00 2001
+From: Trinh Viet Quang <vietquang0708@gmail.com>
+Date: Wed, 10 Sep 2025 20:39:29 +0700
+Subject: [PATCH] disable sata2
+
+Upstream-Status: Inappropriate [oe specific]
+
+Signed-off-by: Trinh Viet Quang <vietquang0708@gmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi | 11 +----------
+ 1 file changed, 1 insertion(+), 10 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+index 043c26224886..55e04e2354c1 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+@@ -686,15 +686,6 @@ &pcie2x1l1 {
+ 	status = "okay";
+ };
+ 
+-&sata2 {
+-	compatible = "marvell,armada-3700-sata";
+-	reset-gpios = <&gpio3 RK_PD1 GPIO_ACTIVE_HIGH>;
+-	vpcie3v3-supply = <&vcc3v3_pcie2x1l1>;
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pcie2_1_rst>;
+-	status = "disable";
+-};
+-
+ &pcie2x1l2 {
+ 	//===============================================
+ 	// ADDED: 2025-08-22
+@@ -867,7 +858,7 @@ &sdmmc {
+ &sfc {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&fspim1_pins>;
+-	status = "okay";
++	status = "disabled";
+ 
+ 	flash@0 {
+ 		compatible = "jedec,spi-nor";
+-- 
+2.43.0
+

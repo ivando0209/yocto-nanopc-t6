@@ -2,6 +2,7 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
 COMPATIBLE_MACHINE:nanopc-t6 = "nanopc-t6"
 
+SRC_URI:append:nanopc-t6 = " file://csi.patch"
 SRC_URI:append:nanopc-t6 = " file://0002-update-device-tree-for-NAVONZ-Board.patch"
 SRC_URI:append:nanopc-t6 = " file://0003-fix-gmac1.patch"
 SRC_URI:append:nanopc-t6 = " file://0004-gmac-phy-add-reset-pin.patch"
@@ -29,6 +30,9 @@ SRC_URI:append:nanopc-t6 = " file://0001-enable-nxp-rtc.patch"
 SRC_URI:append:nanopc-t6 = " file://0001-kernel-pci2.0-l2-change-bus-range.patch"
 SRC_URI:append:nanopc-t6 = " file://0001-kernel-driver-correct-write-function.patch"
 SRC_URI:append:nanopc-t6 = " file://0001-test-skip-loop-wait.patch"
-
+SRC_URI:append:nanopc-t6 = " file://0001-disable-emmc-enable-uart-7-9.patch"
+SRC_URI:append:nanopc-t6 = " file://0001-kernel-enable-uart-i2c-devices.patch"
+SRC_URI:append:nanopc-t6 = " file://0001-disable-sata2.patch"
+SRC_URI:append:nanopc-t6 = " file://0001-i2c3-internal-pull-up.patch"
 KERNEL_FEATURES:append = " marine-kmeta/marine_kernel_config.scc"
 SRC_URI:append:nanopc-t6 = " file://marine-kmeta;type=kmeta;name=marine-kmeta;destsuffix=rockchip-kmeta"

@@ -30,7 +30,7 @@ index ae4ec600254b..6d8d86bb643d 100644
  };
  
 +&usb_host2_xhci {
-+	status = "okay";
++	status = "disabled";
 +};
 +
  &vop_mmu {

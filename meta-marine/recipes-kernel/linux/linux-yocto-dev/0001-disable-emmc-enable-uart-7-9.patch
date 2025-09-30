@@ -1,0 +1,65 @@
+From ac2f326d10fbcecb82751281d08d3b7ebf41f9a9 Mon Sep 17 00:00:00 2001
+From: Trinh Viet Quang <vietquang0708@gmail.com>
+Date: Sun, 7 Sep 2025 17:10:23 +0700
+Subject: [PATCH] disable emmc, enable uart 7, 9
+
+Upstream-Status: Inappropriate [oe specific]
+
+Signed-off-by: Trinh Viet Quang <vietquang0708@gmail.com>
+---
+ .../boot/dts/rockchip/rk3588-nanopc-t6.dtsi   | 22 +++++++++----------
+ 1 file changed, 11 insertions(+), 11 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+index 549d1d916e06..55a37fd6ef5f 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+@@ -19,8 +19,8 @@ / {
+ 	compatible = "friendlyarm,nanopc-t6", "rockchip,rk3588";
+ 
+ 	aliases {
+-		mmc0 = &sdhci;
+-		mmc1 = &sdmmc;
++		mmc1 = &sdhci;
++		mmc0 = &sdmmc;
+ 		ethernet0 = &gmac1;
+ 	};
+ 
+@@ -859,7 +859,7 @@ &sdmmc {
+ 	sd-uhs-sdr104;
+ 	vmmc-supply = <&vcc3v3_sd_s0>;
+ 	vqmmc-supply = <&vccio_sd_s0>;
+-	status = "okay";
++	status = "disabled";
+ };
+ 
+ /* optional on non-LTS, populated on LTS version */
+@@ -1374,15 +1374,15 @@ &uart0 {
+ /*
+  * NMEA1 on UART9
+  */
+-// &uart9 {
+-// 	status = "okay";
+-// 	pinctrl-0 = <&uart9m2_xfer>;
+-// };
++&uart9 {
++	status = "okay";
++	pinctrl-0 = <&uart9m2_xfer>;
++};
+ 
+ /*
+  * NMEA2 on UART7
+  */
+-// &uart7 {
+-// 	status = "okay";
+-// 	pinctrl-0 = <&uart7m2_xfer>;
+-// };
+\ No newline at end of file
++&uart7 {
++	status = "okay";
++	pinctrl-0 = <&uart7m2_xfer>;
++};
+\ No newline at end of file
+-- 
+2.43.0
+

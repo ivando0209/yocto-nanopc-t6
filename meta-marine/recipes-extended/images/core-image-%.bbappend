@@ -71,6 +71,8 @@ IMAGE_INSTALL:append = " \
     python3-numpy \
 "
 
+IMAGE_INSTALL:append = " python3-smbus2"
+
 IMAGE_INSTALL:append = " python3-pyserial "
 IMAGE_INSTALL:append = " git"
 IMAGE_INSTALL:append = " zip unzip"

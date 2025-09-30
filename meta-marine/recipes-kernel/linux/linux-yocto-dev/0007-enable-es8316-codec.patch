@@ -36,7 +36,7 @@ index 512b8f0c0c24..7de17b30c571 100644
  
  &pcie30phy {
 -	status = "disabled";
-+	status = "okay";
++	status = "disabled";
  };
  
  &pcie3x4 {

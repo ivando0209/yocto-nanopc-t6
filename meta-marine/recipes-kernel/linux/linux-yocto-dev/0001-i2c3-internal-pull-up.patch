@@ -1,0 +1,31 @@
+From f0681c73f6855b1f1bc7df4d0b31900caf820fb8 Mon Sep 17 00:00:00 2001
+From: Trinh Viet Quang <vietquang0708@gmail.com>
+Date: Thu, 11 Sep 2025 10:50:30 +0700
+Subject: [PATCH] i2c3: internal pull up
+
+Upstream-Status: Inappropriate [oe specific]
+
+Signed-off-by: Trinh Viet Quang <vietquang0708@gmail.com>
+---
+ arch/arm64/boot/dts/rockchip/rk3588-base-pinctrl.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base-pinctrl.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base-pinctrl.dtsi
+index 6584d73660f6..b75eb46d8617 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-base-pinctrl.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-base-pinctrl.dtsi
+@@ -909,9 +909,9 @@ i2c3m0_xfer: i2c3m0-xfer {
+ 		i2c3m1_xfer: i2c3m1-xfer {
+ 			rockchip,pins =
+ 				/* i2c3_scl_m1 */
+-				<3 RK_PB7 9 &pcfg_pull_none_smt>,
++				<3 RK_PB7 9 &pcfg_pull_up_drv_level_15>,
+ 				/* i2c3_sda_m1 */
+-				<3 RK_PC0 9 &pcfg_pull_none_smt>;
++				<3 RK_PC0 9 &pcfg_pull_up_drv_level_15>;
+ 		};
+ 
+ 		/omit-if-no-ref/
+-- 
+2.43.0
+
